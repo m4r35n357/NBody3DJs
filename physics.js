@@ -38,7 +38,7 @@ function cog () {
 		a = GLOBALS.particles[i];
 		X += a.Qx * a.mass;
 		Y += a.Qy * a.mass;
-		Z += a.Qy * a.mass;
+		Z += a.Qz * a.mass;
 		mT += a.mass;
 	}
 	cogX = X / mT;
@@ -46,7 +46,7 @@ function cog () {
 	cogZ = Z / mT;
 }
 
-function distance (x1, y1, x2, y2, z1, z2) {
+function distance (x1, y1, z1, x2, y2, z2) {
 	return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2));
 }
 
