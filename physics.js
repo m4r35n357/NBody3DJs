@@ -18,10 +18,10 @@ GLOBALS = {
 
 function initialize () {
 	GLOBALS.particles[0] = { colour: GLOBALS.RED, Qx: 0.0, Qy: 0.0, Qz: 0.0, Px: 0.0, Py: 0.0, Pz: 0.0, mass: 100.0, };
-	GLOBALS.particles[1] = { colour: GLOBALS.BLACK, Qx: 0.0, Qy: 1.5, Qz: 0.0, Px: -3.4, Py: 0.0, Pz: 0.0, mass: 2.0, };
-	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: -2.0, Qy: 0.0, Qz: 0.0, Px: 0.0, Py: -5.0, Pz: 0.0, mass: 3.0, };
-	GLOBALS.particles[3] = { colour: GLOBALS.GREEN, Qx: 3.0, Qy: 0.0, Qz: 0.0, Px: 0.0, Py: 6.2, Pz: 0.0, mass: 5.0, };
-	GLOBALS.particles[4] = { colour: GLOBALS.GREY, Qx: 0.0, Qy: -4.0, Qz: 0.0, Px: 4.8, Py: 0.0, Pz: 0.0, mass: 4.0, };
+	GLOBALS.particles[1] = { colour: GLOBALS.BLACK, Qx: 0.0, Qy: 1.5, Qz: 0.1, Px: -3.4, Py: 0.0, Pz: 0.0, mass: 2.0, };
+	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: -2.0, Qy: 0.0, Qz: -0.1, Px: 0.0, Py: -5.0, Pz: 0.0, mass: 3.0, };
+	GLOBALS.particles[3] = { colour: GLOBALS.GREEN, Qx: 3.0, Qy: 0.0, Qz: -0.1, Px: 0.0, Py: 6.2, Pz: 0.0, mass: 5.0, };
+	GLOBALS.particles[4] = { colour: GLOBALS.GREY, Qx: 0.0, Qy: -4.0, Qz: 0.1, Px: 4.8, Py: 0.0, Pz: 0.0, mass: 4.0, };
 	GLOBALS.np = GLOBALS.particles.length;
 	GLOBALS.H0 = hamiltonian();  // initial value
 	GLOBALS.Hmin = GLOBALS.H0;
