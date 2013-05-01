@@ -103,7 +103,9 @@ function render() {
 	camera.lookAt( scene.position );
 
 	// simulate . . .
-	sympEuler(updateQ, updateP);
+//	sympEuler(updateQ, updateP);
+//	stormerVerlet2(updateQ, updateP);
+	stormerVerlet4(updateQ, updateP);
 	cog();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
