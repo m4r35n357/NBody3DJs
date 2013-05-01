@@ -1,7 +1,5 @@
-if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-
 var container, stats;
-var camera, scene, renderer, particle, geometry, materials = [], parameters, i, h, color;
+var camera, scene, renderer, group, particle;
 var mouseX = 0, mouseY = 0;
 
 var windowHalfX = window.innerWidth / 2;
@@ -12,8 +10,6 @@ init();
 animate();
 
 function init() {
-	var a;
-
 	container = document.createElement( 'div' );
 	document.body.appendChild( container );
 
@@ -21,21 +17,31 @@ function init() {
 	camera.position.z = 1000;
 
 	scene = new THREE.Scene();
-//	scene.fog = new THREE.FogExp2( 0x000000, 0.0007 );
 
-	geometry = new THREE.Geometry();
+	var PI2 = Math.PI * 2;
+	var program = function ( context ) {
+		context.beginPath();
+		context.arc( 0, 0, 1, 0, PI2, true );
+		context.closePath();
+		context.fill();
+	}
+
+	group = new THREE.Object3D();
+	scene.add( group );
 
 	// particle setup
 	initialize();
-
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
-		geometry.vertices[i] = new THREE.Vector3(scale * a.Qx, scale * a.Qy, scale * a.Qz);
-		geometry.colors[i] = a.colour;
-		scene.add(new THREE.ParticleSystem(geometry, new THREE.ParticleBasicMaterial({ size: 2.0 * Math.pow(a.mass, 1.0 / 3.0), })));
+		particle = new THREE.Particle( new THREE.ParticleCanvasMaterial( { color: a.colour, program: program } ) );
+		particle.position.x = scale * a.Qx;
+		particle.position.y = scale * a.Qy;
+		particle.position.z = scale * a.Qz;
+		particle.scale.x = particle.scale.y = 5.0 * Math.pow(a.mass, 1.0 / 3.0);
+		group.add( particle );
 	}
 
-	renderer = new THREE.WebGLRenderer();
+	renderer = new THREE.CanvasRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	container.appendChild( renderer.domElement );
 
@@ -54,8 +60,10 @@ function init() {
 function onWindowResize() {
 	windowHalfX = window.innerWidth / 2;
 	windowHalfY = window.innerHeight / 2;
+
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
+
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
@@ -67,14 +75,17 @@ function onDocumentMouseMove( event ) {
 function onDocumentTouchStart( event ) {
 	if ( event.touches.length === 1 ) {
 		event.preventDefault();
+
 		mouseX = event.touches[ 0 ].pageX - windowHalfX;
 		mouseY = event.touches[ 0 ].pageY - windowHalfY;
+
 	}
 }
 
 function onDocumentTouchMove( event ) {
 	if ( event.touches.length === 1 ) {
 		event.preventDefault();
+
 		mouseX = event.touches[ 0 ].pageX - windowHalfX;
 		mouseY = event.touches[ 0 ].pageY - windowHalfY;
 	}
@@ -91,12 +102,17 @@ function render() {
 	camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
 	camera.lookAt( scene.position );
 
+//	group.rotation.x += 0.01;
+//	group.rotation.y += 0.02;
+
 	// simulate . . .
 	sympEuler(updateQ, updateP);
 	for (i = 0; i < GLOBALS.np; i += 1) {
-		geometry.vertices[i].set(scale * GLOBALS.particles[i].Qx, scale * GLOBALS.particles[i].Qy, scale * GLOBALS.particles[i].Qz);
+		a = GLOBALS.particles[i];
+		group.children[i].position.x = scale * a.Qx;
+		group.children[i].position.y = scale * a.Qy;
+		group.children[i].position.z = scale * a.Qz;
 	}
-	geometry.verticesNeedUpdate = true;
 
 	// monitor value of the Hamiltonian
 	if (GLOBALS.debug && ((GLOBALS.n % 100) === 0)) {
@@ -119,4 +135,5 @@ function render() {
 	GLOBALS.n += 1;
 	renderer.render( scene, camera );
 }
+
 
