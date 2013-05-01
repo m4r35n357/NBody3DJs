@@ -82,17 +82,11 @@
 
 				}
 */
-	initialize();
-	for (i = 0; i < GLOBALS.np; i += 1) {
-		geometry.vertices[i] = new THREE.Vector3(threeDscale * GLOBALS.particles[i].Qx, threeDscale * GLOBALS.particles[i].Qy, threeDscale * GLOBALS.particles[i].Qz);
-	}
+				initialize();
+				for (i = 0; i < GLOBALS.np; i += 1) {
+					geometry.vertices[i] = new THREE.Vector3(threeDscale * GLOBALS.particles[i].Qx, threeDscale * GLOBALS.particles[i].Qy, threeDscale * GLOBALS.particles[i].Qz);
+				}
 
-/*
-	geometry.vertices[0] = new THREE.Vector3(100.0, 200.0, 10.0);
-	geometry.vertices[1] = new THREE.Vector3(-100.0, -200.0, -10.0);
-	geometry.vertices[2] = new THREE.Vector3(-100.0, 200.0, -10.0);
-	geometry.vertices[3] = new THREE.Vector3(100.0, -200.0, 10.0);
-*/
 				// [[ colour ], size ] 
 				parameters = [
 					[ [1, 1, 0.5], 10 ],
@@ -225,33 +219,32 @@
 
 				}
 */
-//				geometry.vertices[0].set(300.0, 200.0, 10.0);
+				// simulate . . .
 				sympEuler(updateQ, updateP);
+				for (i = 0; i < GLOBALS.np; i += 1) {
+					geometry.vertices[i].set(threeDscale * GLOBALS.particles[i].Qx, threeDscale * GLOBALS.particles[i].Qy, threeDscale * GLOBALS.particles[i].Qz);
+				}
+				geometry.verticesNeedUpdate = true;
 
-	for (i = 0; i < GLOBALS.np; i += 1) {
-		geometry.vertices[i].set(threeDscale * GLOBALS.particles[i].Qx, threeDscale * GLOBALS.particles[i].Qy, threeDscale * GLOBALS.particles[i].Qz);
-	}
-	geometry.verticesNeedUpdate = true;
-
-	// monitor value of the Hamiltonian
-	if (GLOBALS.debug && ((GLOBALS.n % 100) === 0)) {
-		update = false;
-		Hcurrent = hamiltonian();
-		if (Hcurrent < GLOBALS.Hmin) {
-			GLOBALS.Hmin = Hcurrent;
-			update = true;
-		} else if (Hcurrent > GLOBALS.Hmax) {
-			GLOBALS.Hmax = Hcurrent;
-			update = true;
-		}
-		if (update) {
-			console.log("Hamiltonian: " + Hcurrent.toExponential(6) +
-					", Start: " + GLOBALS.H0.toExponential(6) +
-					", Min: " + GLOBALS.Hmin.toExponential(6) +
-					", Max: " + GLOBALS.Hmax.toExponential(6));
-		}
-	}
-	GLOBALS.n += 1;
+				// monitor value of the Hamiltonian
+				if (GLOBALS.debug && ((GLOBALS.n % 100) === 0)) {
+					update = false;
+					Hcurrent = hamiltonian();
+					if (Hcurrent < GLOBALS.Hmin) {
+						GLOBALS.Hmin = Hcurrent;
+						update = true;
+					} else if (Hcurrent > GLOBALS.Hmax) {
+						GLOBALS.Hmax = Hcurrent;
+						update = true;
+					}
+					if (update) {
+						console.log("Hamiltonian: " + Hcurrent.toExponential(6) +
+								", Start: " + GLOBALS.H0.toExponential(6) +
+								", Min: " + GLOBALS.Hmin.toExponential(6) +
+								", Max: " + GLOBALS.Hmax.toExponential(6));
+					}
+				}
+				GLOBALS.n += 1;
 				renderer.render( scene, camera );
 
 			}
