@@ -102,16 +102,14 @@ function render() {
 	camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
 	camera.lookAt( scene.position );
 
-//	group.rotation.x += 0.01;
-//	group.rotation.y += 0.02;
-
 	// simulate . . .
 	sympEuler(updateQ, updateP);
+	cog();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
-		group.children[i].position.x = scale * a.Qx;
-		group.children[i].position.y = scale * a.Qy;
-		group.children[i].position.z = scale * a.Qz;
+		group.children[i].position.x = scale * (a.Qx - cogX);
+		group.children[i].position.y = scale * (a.Qy - cogY);
+		group.children[i].position.z = scale * (a.Qz - cogZ);
 	}
 
 	// monitor value of the Hamiltonian
