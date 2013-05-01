@@ -1,5 +1,5 @@
 var container, stats;
-var camera, scene, renderer, group, particle;
+var camera, scene, renderer, group, particle, plane;
 var mouseX = 0, mouseY = 0;
 
 var windowHalfX = window.innerWidth / 2;
@@ -28,7 +28,21 @@ function init() {
 
 	group = new THREE.Object3D();
 	scene.add( group );
-
+/*
+	plane = new THREE.Plane();
+	plane.normal = new THREE.Vector3(0.0, 0.0, 1.0);
+	scene.add( plane );
+*/
+/*
+	// each square
+	var planeW = 100; // pixels
+	var planeH = 100; // pixels 
+	var numW = 50; // how many wide (50*50 = 2500 pixels wide)
+	var numH = 50; // how many tall (50*50 = 2500 pixels tall)
+	var plane = new THREE.Mesh( new THREE.PlaneGeometry( planeW*50, planeH*50, planeW, planeH ), new THREE.MeshBasicMaterial( { color: GLOBALS.PALEGREY, wireframe: true } ) );
+	plane.rotation.z = PI2;
+	scene.add(plane);
+*/
 	// particle setup
 	initialize();
 	for (i = 0; i < GLOBALS.np; i += 1) {
@@ -98,8 +112,8 @@ function animate() {
 }
 
 function render() {
-	camera.position.x += ( mouseX - camera.position.x ) * 0.05;
-	camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+	camera.position.x += ( mouseX - camera.position.x ) * 1.0;
+	camera.position.y += ( - mouseY - camera.position.y ) * 1.0;
 	camera.lookAt( scene.position );
 
 	// simulate . . .
