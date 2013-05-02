@@ -77,7 +77,7 @@ function updateQ (coefficient) {
 }
 
 function updateP (coefficient) {
-	var a, b, i, j, tmp, dPx, dPy;
+	var a, b, i, j, tmp, dPx, dPy, dPz;
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
 		for (j = 0; j < GLOBALS.np; j += 1) {
