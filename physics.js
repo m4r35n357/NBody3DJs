@@ -17,6 +17,7 @@ GLOBALS = {
 	g: 0.05,
 	ts: 0.005,
 	n: 0,
+	error: 0.0,
 	particles: [],
 };
 
