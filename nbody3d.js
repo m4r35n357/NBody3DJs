@@ -39,6 +39,10 @@ function init() {
 	scene.add(plane);
 */
 	// particle setup
+
+	GLOBALS.particles[0] = { colour: GLOBALS.BLACK, Qx: 1.0, Qy: 2.0, Qz: 0.0, Px: 0.1, Py: 0.1, Pz: 0.0, mass: 5.0, };
+	GLOBALS.particles[1] = { colour: GLOBALS.BLACK, Qx: 2.0, Qy: 1.0, Qz: 0.0, Px: -0.1, Py: -0.1, Pz: 0.0, mass: 1.0, };
+/*
 	GLOBALS.particles[0] = { colour: GLOBALS.YELLOW, Qx: 0.0, Qy: 0.0, Qz: 0.0, Px: 0.0, Py: 0.0, Pz: 0.1, mass: 100.0, };
 	GLOBALS.particles[1] = { colour: GLOBALS.BLACK, Qx: 0.0, Qy: 1.5, Qz: 0.4, Px: -3.4, Py: 0.0, Pz: -0.2, mass: 2.0, };
 	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: -2.0, Qy: 0.0, Qz: -0.4, Px: 0.0, Py: -4.0, Pz: 0.2, mass: 3.0, };
@@ -47,6 +51,7 @@ function init() {
 	GLOBALS.particles[5] = { colour: GLOBALS.RED, Qx: -4.0, Qy: 0.0, Qz: -0.1, Px: 0.0, Py: -2.8, Pz: -0.2, mass: 3.0, };
 	GLOBALS.particles[6] = { colour: GLOBALS.CYAN, Qx: 2.0, Qy: 0.0, Qz: -0.3, Px: 0.0, Py: 4.4, Pz: 0.2, mass: 3.0, };
 	GLOBALS.particles[7] = { colour: GLOBALS.PURPLE, Qx: 0.0, Qy: 3.0, Qz: -0.2, Px: -5.0, Py: 0.0, Pz: -0.1, mass: 4.0, };
+*/
 	initialize();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
@@ -143,7 +148,8 @@ function render() {
 			update = true;
 		}
 		if (update) {
-			console.log("Hamiltonian: " + Hcurrent.toExponential(6) +
+			console.log("n: " + GLOBALS.n +
+					", Hamiltonian: " + Hcurrent.toExponential(6) +
 					", Start: " + GLOBALS.H0.toExponential(6) +
 					", Min: " + GLOBALS.Hmin.toExponential(6) +
 					", Max: " + GLOBALS.Hmax.toExponential(6));
