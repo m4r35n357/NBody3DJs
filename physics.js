@@ -16,7 +16,7 @@ GLOBALS = {
 	CYAN: "#008080",
 	scale: 0.2,
 	g: 0.05,
-	ts: 0.005,
+	ts: 0.001,
 	n: 0,
 	error: 0.0,
 	particles: [],
@@ -113,7 +113,7 @@ function stormerVerlet2 (first, second) {
 
 function stormerVerlet4 (first, second) {
 	var c1, c2, c3, c4, d1, d2, d3;
-	var cubeRoot2 = Math.pow(2.0, 1/3);
+	var cubeRoot2 = Math.pow(2.0, 1.0 / 3.0);
 	var denom = 2.0 - cubeRoot2;
 	c1 = c4 = 1.0 / (2.0 * denom);
 	c2 = c3 = (1.0 - cubeRoot2) / (2.0 * denom);
