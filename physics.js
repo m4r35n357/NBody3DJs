@@ -6,6 +6,7 @@ GLOBALS = {
 	debug: true,
 	BLACK: "#000000",
 	GREY: "#808080",
+	DARKGREY: "#404040",
 	PALEGREY: "#c0c0c0",
 	RED: "#ff0000",
 	GREEN: "#00ff00",
