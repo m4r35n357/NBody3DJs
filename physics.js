@@ -67,24 +67,24 @@ function hamiltonian () {
 	return totalEnergy;
 }
 
-function updateQ (coefficient) {
+function updateQ (c) {
 	var a, i, tmp;
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
-		tmp = coefficient / a.mass * GLOBALS.ts;
+		tmp = c / a.mass * GLOBALS.ts;
 		a.Qx += a.Px * tmp;
 		a.Qy += a.Py * tmp;
 		a.Qz += a.Pz * tmp;
 	}
 }
 
-function updateP (coefficient) {
+function updateP (c) {
 	var a, b, i, j, tmp, dPx, dPy, dPz;
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
 		for (j = 0; j < GLOBALS.np; j += 1) {
 			b = GLOBALS.particles[j];
-			tmp = - coefficient * GLOBALS.g * a.mass * b.mass / Math.pow(distance(a.Qx, a.Qy, a.Qz, b.Qx, b.Qy, b.Qz), 3) * GLOBALS.ts;
+			tmp = - c * GLOBALS.g * a.mass * b.mass / Math.pow(distance(a.Qx, a.Qy, a.Qz, b.Qx, b.Qy, b.Qz), 3) * GLOBALS.ts;
 			if (i > j) {
 				dPx = (b.Qx - a.Qx) * tmp;
 				dPy = (b.Qy - a.Qy) * tmp;

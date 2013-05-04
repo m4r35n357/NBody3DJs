@@ -1,5 +1,5 @@
 var container, stats;
-var camera, scene, renderer, group, particle, plane;
+var camera, scene, renderer, group, particle, grid;
 var mouseX = 0, mouseY = 0;
 
 var windowHalfX = window.innerWidth / 2;
@@ -18,6 +18,13 @@ function init() {
 
 	scene = new THREE.Scene();
 
+	// Grid
+	var N = 2;
+	var W = H = 1000;
+	var grid = new THREE.Mesh(new THREE.PlaneGeometry(N * W, N * H, N, N), new THREE.MeshBasicMaterial({ color: GLOBALS.DARKGREY, wireframe: true }));
+	grid.rotation.z = PI2;
+	scene.add(grid);
+
 	var PI2 = Math.PI * 2;
 	var program = function ( context ) {
 		context.beginPath();
@@ -28,14 +35,6 @@ function init() {
 
 	group = new THREE.Object3D();
 	scene.add( group );
-
-	// each square
-	var planeW = planeH = 2;
-	var numW = numH = 1000;
-	var plane = new THREE.Mesh(new THREE.PlaneGeometry(planeW * numW, planeH * numH, planeW, planeH),
-					new THREE.MeshBasicMaterial({ color: GLOBALS.DARKGREY, wireframe: true }));
-	plane.rotation.z = PI2;
-	scene.add(plane);
 
 	// particle setup
 /*
@@ -53,12 +52,12 @@ function init() {
 	initialize();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
-		particle = new THREE.Particle( new THREE.ParticleCanvasMaterial( { color: a.colour, program: program } ) );
+		particle = new THREE.Particle( new THREE.ParticleCanvasMaterial({ color: a.colour, program: program }));
 		particle.position.x = scale * a.Qx;
 		particle.position.y = scale * a.Qy;
 		particle.position.z = scale * a.Qz;
 		particle.scale.x = particle.scale.y = 4.0 * Math.pow(a.mass, 1.0 / 3.0);
-		group.add( particle );
+		group.add(particle);
 	}
 
 	renderer = new THREE.CanvasRenderer();
@@ -70,8 +69,8 @@ function init() {
 	stats.domElement.style.top = '0px';
 	container.appendChild( stats.domElement );
 
-	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+	document.addEventListener( 'mousedown', onDocumentMouseMove, false );
+//	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
 	document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 
 	window.addEventListener( 'resize', onWindowResize, false );
