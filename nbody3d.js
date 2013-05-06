@@ -18,13 +18,6 @@ function init() {
 
 	scene = new THREE.Scene();
 
-	// Grid
-	var N = 2;
-	var W = H = 1000;
-	var grid = new THREE.Mesh(new THREE.PlaneGeometry(N * W, N * H, N, N), new THREE.MeshBasicMaterial({ color: GLOBALS.DARKGREY, wireframe: true }));
-	grid.rotation.z = PI2;
-	scene.add(grid);
-
 	var PI2 = Math.PI * 2;
 	var program = function ( context ) {
 		context.beginPath();
@@ -35,6 +28,13 @@ function init() {
 
 	group = new THREE.Object3D();
 	scene.add( group );
+
+	// Grid
+	var N = 2;
+	var W = H = 1000;
+	var grid = new THREE.Mesh(new THREE.PlaneGeometry(N * W, N * H, N, N), new THREE.MeshBasicMaterial({ color: GLOBALS.DARKGREY, wireframe: true }));
+	grid.rotation.z = PI2;
+	scene.add(grid);
 
 	// particle setup
 /*
@@ -112,6 +112,7 @@ function animate() {
 }
 
 function render() {
+	var hNow, dH;
 	camera.position.x += ( mouseX - 0.5 * camera.position.x ) * 1.0;
 	camera.position.y += ( - mouseY - 0.5 * camera.position.y ) * 1.0;
 	camera.lookAt( scene.position );
@@ -126,23 +127,22 @@ function render() {
 	}
 	// monitor value of the Hamiltonian
 	if (GLOBALS.debug) {
-		Hcurrent = hamiltonian();
-		if (Hcurrent < GLOBALS.Hmin) {
-			GLOBALS.Hmin = Hcurrent;
-			GLOBALS.error += Math.abs(Hcurrent - GLOBALS.H0);
-		} else if (Hcurrent > GLOBALS.Hmax) {
-			GLOBALS.Hmax = Hcurrent;
-			GLOBALS.error += Math.abs(Hcurrent - GLOBALS.H0);
+		hNow = hamiltonian();
+		dH = hNow - GLOBALS.H0;
+		GLOBALS.error += Math.abs(dH);
+		if (hNow < GLOBALS.Hmin) {
+			GLOBALS.Hmin = hNow;
+		} else if (hNow > GLOBALS.Hmax) {
+			GLOBALS.Hmax = hNow;
 		}
 		if (GLOBALS.n % 1000 === 0) {
 			console.log("n: " + GLOBALS.n +
-					", Hamiltonian: " + Hcurrent.toExponential(9) +
+					", Hamiltonian: " + hNow.toExponential(9) +
 					", Start: " + GLOBALS.H0.toExponential(9) +
 					", Min: " + GLOBALS.Hmin.toExponential(9) +
 					", Max: " + GLOBALS.Hmax.toExponential(9) +
-					", Error: " + GLOBALS.error.toExponential(9) +
-					", ER: " + (10.0 * Math.log(Math.abs((Hcurrent - GLOBALS.H0) / GLOBALS.H0)) / Math.log(10.0)).toFixed(1));
-//					", SNR: " + (10.0 * Math.log(Math.abs(GLOBALS.H0 / GLOBALS.error)) / Math.log(10.0)).toFixed(1));
+					", Error: " + GLOBALS.error.toExponential(3) +
+					", ER: " + (10.0 * Math.log(Math.abs(dH / GLOBALS.H0)) / Math.log(10.0)).toFixed(1));
 		}
 	}
 	GLOBALS.n += 1;

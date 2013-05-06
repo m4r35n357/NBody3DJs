@@ -48,8 +48,8 @@ function cog () {
 	cogZ = Z / mT;
 }
 
-function distance (x1, y1, z1, x2, y2, z2) {
-	return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2));
+function distance (xA, yA, zA, xB, yB, zB) {
+	return Math.sqrt(Math.pow(xB - xA, 2) + Math.pow(yB - yA, 2) + Math.pow(zB - zA, 2));
 }
 
 function hamiltonian () {
