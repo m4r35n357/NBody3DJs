@@ -27,6 +27,7 @@ function initialize () {
 	GLOBALS.H0 = hamiltonian();  // initial value
 	GLOBALS.Hmin = GLOBALS.H0;
 	GLOBALS.Hmax = GLOBALS.H0;
+	GLOBALS.error = 0.0;
 }
 
 function cog () {
