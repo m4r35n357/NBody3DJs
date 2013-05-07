@@ -54,8 +54,8 @@ function init() {
 	GLOBALS.particles[1] = { colour: GLOBALS.WHITE, Qx: -0.07095, Qy: 0.0, Qz: 0.0, Px: -0.2, Py: -1.23187, Pz: 0.0, mass: 1.0, };
 	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: -1.00496, Qy: 0.0, Qz: 0.0, Px: 0.0, Py: 1.03678, Pz: 0.0, mass: 1.0, };
 */
-	GLOBALS.particles[0] = { colour: GLOBALS.YELLOW, Qx: 1.0, Qy: 1.0, Qz: 1.0, Px: -1.0, Py: 1.0, Pz: -1.0, mass: 1.0, };
-	GLOBALS.particles[1] = { colour: GLOBALS.WHITE, Qx: -1.0, Qy: -1.0, Qz: 1.0, Px: 1.0, Py: -1.0, Pz: -1.0, mass: 1.0, };
+	GLOBALS.particles[0] = { colour: GLOBALS.RED, Qx: 1.0, Qy: 1.0, Qz: 1.0, Px: -1.0, Py: 1.0, Pz: -1.0, mass: 1.0, };
+	GLOBALS.particles[1] = { colour: GLOBALS.YELLOW, Qx: -1.0, Qy: -1.0, Qz: 1.0, Px: 1.0, Py: -1.0, Pz: -1.0, mass: 1.0, };
 	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: 1.0, Qy: -1.0, Qz: -1.0, Px: 1.0, Py: 1.0, Pz: 1.0, mass: 1.0, };
 	GLOBALS.particles[3] = { colour: GLOBALS.GREEN, Qx: -1.0, Qy: 1.0, Qz: -1.0, Px: -1.0, Py: -1.0, Pz: 1.0, mass: 1.0, };
 
@@ -66,7 +66,7 @@ function init() {
 		particle.position.x = scale * a.Qx;
 		particle.position.y = scale * a.Qy;
 		particle.position.z = scale * a.Qz;
-		particle.scale.x = particle.scale.y = 4.0 * Math.pow(a.mass, 1.0 / 3.0);
+		particle.scale.x = particle.scale.y = 8.0 * Math.pow(a.mass, 1.0 / 3.0);
 		group.add(particle);
 	}
 
@@ -127,7 +127,7 @@ function render() {
 	camera.position.y += ( - mouseY - 0.5 * camera.position.y ) * 1.0;
 	camera.lookAt( scene.position );
 	// simulate . . .
-	stormerVerlet4(updateQ, updateP);
+	sympEuler(updateQ, updateP);
 	cog();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
@@ -139,7 +139,6 @@ function render() {
 	if (GLOBALS.debug) {
 		hNow = hamiltonian();
 		dH = hNow - GLOBALS.H0;
-		GLOBALS.error += Math.abs(dH);
 		if (hNow < GLOBALS.Hmin) {
 			GLOBALS.Hmin = hNow;
 		} else if (hNow > GLOBALS.Hmax) {
@@ -151,7 +150,7 @@ function render() {
 					", H0: " + GLOBALS.H0.toExponential(6) +
 					", H-: " + GLOBALS.Hmin.toExponential(6) +
 					", H+: " + GLOBALS.Hmax.toExponential(6) +
-					", E: " + GLOBALS.error.toExponential(1) +
+					", E: " + Math.abs(dH).toExponential(1) +
 					", ER: " + (10.0 * Math.log(Math.abs(dH / GLOBALS.H0)) / Math.log(10.0)).toFixed(1));
 		}
 	}
