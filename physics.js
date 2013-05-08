@@ -15,10 +15,9 @@ GLOBALS = {
 	PURPLE: "#800080",
 	CYAN: "#008080",
 	scale: 0.2,
-	g: 3.5,
-	ts: 0.01,
 	n: 0,
 	error: 0.0,
+	density: 1000000000.0,
 	particles: [],
 };
 
@@ -80,13 +79,20 @@ function updateQ (c) {
 }
 
 function updateP (c) {
-	var a, b, i, j, tmp, dPx, dPy, dPz;
+	var a, b, i, j, separation, tmp, dPx, dPy, dPz;
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
 		for (j = 0; j < GLOBALS.np; j += 1) {
 			b = GLOBALS.particles[j];
-			tmp = - c * GLOBALS.g * a.mass * b.mass / Math.pow(distance(a.Qx, a.Qy, a.Qz, b.Qx, b.Qy, b.Qz), 3) * GLOBALS.ts;
 			if (i > j) {
+				separation = distance(a.Qx, a.Qy, a.Qz, b.Qx, b.Qy, b.Qz);
+				if (separation > (a.radius + b.radius)) {
+					tmp = - c * GLOBALS.g * a.mass * b.mass / Math.pow(separation, 3) * GLOBALS.ts;
+				} else {
+					GLOBALS.debug && console.log("COLLISION between " + i + " and " + j + "!");
+					tmp = - c * GLOBALS.g * a.mass * b.mass / Math.pow(a.radius + b.radius, 3) * GLOBALS.ts;
+				}
+//				tmp = - c * GLOBALS.g * a.mass * b.mass / Math.pow(distance(a.Qx, a.Qy, a.Qz, b.Qx, b.Qy, b.Qz), 3) * GLOBALS.ts;
 				dPx = (b.Qx - a.Qx) * tmp;
 				dPy = (b.Qy - a.Qy) * tmp;
 				dPz = (b.Qz - a.Qz) * tmp;
@@ -101,7 +107,7 @@ function updateP (c) {
 	}
 }
 
-function sympEuler (first, second) {
+function euler (first, second) {
 	first(1.0);
 	second(1.0);
 }
