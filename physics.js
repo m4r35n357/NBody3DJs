@@ -80,16 +80,26 @@ function updateQ (c) {
 }
 
 function updateP (c) {
-	var a, b, i, j, tmp, dPx, dPy, dPz;
-	for (i = 0; i < GLOBALS.np; i += 1) {
+	var a, b, i, j, tmp, dPx, dPy, dPz, am, aQx, aQy, aQz, bQx, bQy, bQz;
+	var N = GLOBALS.np;
+	var g = GLOBALS.g;
+	var ts = GLOBALS.ts;
+	for (i = 0; i < N; i += 1) {
 		a = GLOBALS.particles[i];
-		for (j = 0; j < GLOBALS.np; j += 1) {
+		am = a.mass;
+		aQx = a.Qx;
+		aQy = a.Qy;
+		aQz = a.Qz;
+		for (j = 0; j < N; j += 1) {
 			b = GLOBALS.particles[j];
+			bQx = b.Qx;
+			bQy = b.Qy;
+			bQz = b.Qz;
 			if (i > j) {
-				tmp = - c * GLOBALS.g * a.mass * b.mass / Math.pow(distance(a.Qx, a.Qy, a.Qz, b.Qx, b.Qy, b.Qz), 3) * GLOBALS.ts;
-				dPx = (b.Qx - a.Qx) * tmp;
-				dPy = (b.Qy - a.Qy) * tmp;
-				dPz = (b.Qz - a.Qz) * tmp;
+				tmp = - c * g * am * b.mass / Math.pow(distance(aQx, aQy, aQz, bQx, bQy, bQz), 3) * ts;
+				dPx = (bQx - aQx) * tmp;
+				dPy = (bQy - aQy) * tmp;
+				dPz = (bQz - aQz) * tmp;
 				a.Px -= dPx;
 				a.Py -= dPy;
 				a.Pz -= dPz;
