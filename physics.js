@@ -123,19 +123,12 @@ function stormerVerlet2 (first, second) {
 }
 
 function stormerVerlet4 (first, second) {
-	var c1, c2, c3, c4, d1, d2, d3;
-	var cubeRoot2 = Math.pow(2.0, 1.0 / 3.0);
-	var denom = 2.0 - cubeRoot2;
-	c1 = c4 = 1.0 / (2.0 * denom);
-	c2 = c3 = (1.0 - cubeRoot2) / (2.0 * denom);
-	d1 = d3 = 1.0 / denom;
-	d2 = - cubeRoot2 / denom;
-	first(c1);
-	second(d1);
-	first(c2);
-	second(d2);
-	first(c3);
-	second(d3);
-	first(c4);
+	first(0.6756035959798289)
+	second(1.3512071919596578)
+	first(-0.17560359597982883)
+	second(-1.7024143839193153)
+	first(-0.17560359597982883)
+	second(1.3512071919596578)
+	first(0.6756035959798289)
 }
 
