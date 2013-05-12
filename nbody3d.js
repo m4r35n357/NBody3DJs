@@ -125,7 +125,6 @@ function render() {
 			GLOBALS.Hmax = hNow;
 		}
 		if (GLOBALS.n % 1000 === 0) {
-//			console.log(JSON.stringify(GLOBALS.particles));
 			console.log("t: " + (GLOBALS.n * GLOBALS.ts).toFixed(0) +
 					", H:" + hNow.toExponential(6) +
 					", H0:" + GLOBALS.H0.toExponential(6) +

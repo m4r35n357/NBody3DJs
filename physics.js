@@ -18,7 +18,6 @@ GLOBALS = {
 	scale: 0.2,
 	n: 0,
 	error: 0.0,
-//	density: 1000000000.0,
 	particles: [],
 };
 
