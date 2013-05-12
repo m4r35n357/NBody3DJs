@@ -118,7 +118,7 @@ function render() {
 	// monitor value of the Hamiltonian
 	if (GLOBALS.debug) {
 		hNow = hamiltonian();
-		dH = hNow - GLOBALS.H0;
+		dH = (hNow - GLOBALS.H0) > 0.0 ? hNow - GLOBALS.H0 : 1.0e-18;
 		if (hNow < GLOBALS.Hmin) {
 			GLOBALS.Hmin = hNow;
 		} else if (hNow > GLOBALS.Hmax) {
