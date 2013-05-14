@@ -113,12 +113,14 @@ function updateP (c) {
 function euler (first, second) {
 	first(1.0);
 	second(1.0);
+	cog();
 }
 
 function stormerVerlet2 (first, second) {
 	first(0.5);
 	second(1.0);
 	first(0.5);
+	cog();
 }
 
 function stormerVerlet4 (first, second) {
@@ -129,5 +131,6 @@ function stormerVerlet4 (first, second) {
 	first(-0.17560359597982883)
 	second(1.3512071919596578)
 	first(0.6756035959798289)
+	cog();
 }
 

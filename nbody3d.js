@@ -10,6 +10,7 @@ init();
 animate();
 
 function init() {
+	var ONETHIRD = 1.0 / 3.0;
 	container = document.createElement( 'div' );
 	document.body.appendChild( container );
 
@@ -37,11 +38,11 @@ function init() {
 	scene.add(grid);
 
 	// particle setup
-	fourBody();
+	threeBody();
 	initialize();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
-		a.radius = Math.pow(a.mass / GLOBALS.density, 1.0 / 3.0);
+		a.radius = Math.pow(a.mass / GLOBALS.density, ONETHIRD);
 		particle = new THREE.Particle( new THREE.ParticleCanvasMaterial({ color: a.colour, program: program }));
 		particle.position.x = scale * a.Qx;
 		particle.position.y = scale * a.Qy;
@@ -101,14 +102,17 @@ function animate() {
 	stats.update();
 }
 
+function log10 (x) {
+	return Math.log(x) / Math.log(10.0);
+}
+
 function render() {
-	var hNow, dH;
+	var a, hNow, dH, tmp, dbValue;
 	camera.position.x += ( mouseX - 0.5 * camera.position.x ) * 1.0;
 	camera.position.y += ( - mouseY - 0.5 * camera.position.y ) * 1.0;
 	camera.lookAt( scene.position );
 	// simulate . . .
-	stormerVerlet4(updateQ, updateP);
-	cog();
+	stormerVerlet2(updateQ, updateP);
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
 		group.children[i].position.x = scale * (a.Qx - cogX);
@@ -118,7 +122,8 @@ function render() {
 	// monitor value of the Hamiltonian
 	if (GLOBALS.debug) {
 		hNow = hamiltonian();
-		dH = (hNow - GLOBALS.H0) > 0.0 ? hNow - GLOBALS.H0 : 1.0e-18;
+		tmp = Math.abs(hNow - GLOBALS.H0);
+		dH = tmp > 0.0 ? tmp : 1.0e-18;
 		if (hNow < GLOBALS.Hmin) {
 			GLOBALS.Hmin = hNow;
 		} else if (hNow > GLOBALS.Hmax) {
@@ -130,7 +135,7 @@ function render() {
 					", H0:" + GLOBALS.H0.toExponential(6) +
 					", H-:" + GLOBALS.Hmin.toExponential(6) +
 					", H+:" + GLOBALS.Hmax.toExponential(6) +
-					", ER:" + (10.0 * Math.log(Math.abs(dH / GLOBALS.H0)) / Math.log(10.0)).toFixed(1));
+					", ER:" + (10.0 * log10(Math.abs(dH / GLOBALS.H0))).toFixed(1));
 		}
 	}
 	GLOBALS.n += 1;
