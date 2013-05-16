@@ -4,18 +4,12 @@
 
 function twoBody () {
 	GLOBALS.g = 0.05;
-	GLOBALS.ts = 0.01;
-	GLOBALS.outputInterval = Math.round(1.0 / GLOBALS.ts);
-	GLOBALS.errorLimit = -60.0;
 	GLOBALS.particles[0] = { colour: GLOBALS.GREEN, Qx: 1.0, Qy: 2.0, Qz: 0.0, Px: 0.1, Py: 0.1, Pz: 0.0, mass: 5.0, };
 	GLOBALS.particles[1] = { colour: GLOBALS.RED, Qx: 2.0, Qy: 1.0, Qz: 0.0, Px: -0.1, Py: -0.1, Pz: 0.0, mass: 1.0, };
 }
 
 function threeBody () {
 	GLOBALS.g = 1.0;
-	GLOBALS.ts = 0.01;
-	GLOBALS.outputInterval = Math.round(1.0 / GLOBALS.ts);
-	GLOBALS.errorLimit = -60.0;
 	GLOBALS.particles[0] = { colour: GLOBALS.YELLOW, Qx: 1.07590, Qy: 0.0, Qz: 0.0, Px: 0.0, Py: 0.19509, Pz: 0.0, mass: 1.0, };
 	GLOBALS.particles[1] = { colour: GLOBALS.WHITE, Qx: -0.07095, Qy: 0.0, Qz: 0.0, Px: -0.2, Py: -1.23187, Pz: 0.0, mass: 1.0, };
 	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: -1.00496, Qy: 0.0, Qz: 0.0, Px: 0.0, Py: 1.03678, Pz: 0.0, mass: 1.0, };
@@ -23,9 +17,9 @@ function threeBody () {
 
 function fourBody () {
 	GLOBALS.g = 3.50;
-	GLOBALS.ts = 0.01;
-	GLOBALS.outputInterval = Math.round(1.0 / GLOBALS.ts);
-	GLOBALS.errorLimit = -60.0;
+//	GLOBALS.ts = 0.01;
+//	GLOBALS.outputInterval = Math.round(1.0 / GLOBALS.ts);
+//	GLOBALS.errorLimit = -60.0;
 	GLOBALS.particles[0] = { colour: GLOBALS.RED, Qx: 1.0, Qy: 1.0, Qz: 1.0, Px: -1.0, Py: 1.0, Pz: -1.0, mass: 1.0, };
 	GLOBALS.particles[1] = { colour: GLOBALS.YELLOW, Qx: -1.0, Qy: -1.0, Qz: 1.0, Px: 1.0, Py: -1.0, Pz: -1.0, mass: 1.0, };
 	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: 1.0, Qy: -1.0, Qz: -1.0, Px: 1.0, Py: 1.0, Pz: 1.0, mass: 1.0, };
@@ -34,9 +28,6 @@ function fourBody () {
 
 function fourBodyA () {
 	GLOBALS.g = 1.0;
-	GLOBALS.ts = 0.01;
-	GLOBALS.outputInterval = Math.round(1.0 / GLOBALS.ts);
-	GLOBALS.errorLimit = -60.0;
 	GLOBALS.particles[0] = { colour: GLOBALS.RED, Qx: 0.0, Qy: -0.69548, Qz: 0.69548, Px: 0.87546, Py: -0.31950, Pz: -0.31950, mass: 1.0, };
 	GLOBALS.particles[1] = { colour: GLOBALS.YELLOW, Qx: 0.0, Qy: 0.69548, Qz: -0.69548, Px: 0.87546, Py: 0.31950, Pz: 0.31950, mass: 1.0, };
 	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: 0.0, Qy: -0.69548, Qz: -0.69548, Px: -0.87546, Py: -0.31950, Pz: 0.31950, mass: 1.0, };
@@ -45,9 +36,6 @@ function fourBodyA () {
 
 function eightBody () {
 	GLOBALS.g = 0.05;
-	GLOBALS.ts = 0.01;
-	GLOBALS.outputInterval = Math.round(1.0 / GLOBALS.ts);
-	GLOBALS.errorLimit = -60.0;
 	GLOBALS.particles[0] = { colour: GLOBALS.YELLOW, Qx: 0.0, Qy: 0.0, Qz: 0.0, Px: 0.0, Py: 0.0, Pz: 0.0, mass: 100.0, };
 	GLOBALS.particles[1] = { colour: GLOBALS.WHITE, Qx: 0.0, Qy: 4.5, Qz: 0.4, Px: -0.2, Py: 0.0, Pz: 1.8, mass: 2.0, };
 	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: -6.0, Qy: 0.0, Qz: -0.4, Px: 0.0, Py: -0.6, Pz: 1.0, mass: 3.0, };
