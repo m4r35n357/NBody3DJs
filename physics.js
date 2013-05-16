@@ -115,7 +115,6 @@ function updateP (c) {
 function euler (first, second) {
 	first(1.0);
 	second(1.0);
-	cog();
 }
 
 function stormerVerletBase (first, second, step) {
@@ -126,14 +125,12 @@ function stormerVerletBase (first, second, step) {
 
 function stormerVerlet2 (first, second) {
 	stormerVerletBase(first, second, 1.0)
-	cog();
 }
 
 function stormerVerlet4 (first, second) {
 	stormerVerletBase(first, second, 1.351207191959657)
 	stormerVerletBase(first, second, -1.702414383919315)
 	stormerVerletBase(first, second, 1.351207191959657)
-	cog();
 }
 
 function stormerVerlet6 (first, second) {
@@ -144,6 +141,5 @@ function stormerVerlet6 (first, second) {
 	stormerVerletBase(first, second, -1.17767998417887e0)
 	stormerVerletBase(first, second, 0.235573213359357e0)
 	stormerVerletBase(first, second, 0.784513610477560e0)
-	cog();
 }
 

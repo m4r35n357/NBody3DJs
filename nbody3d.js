@@ -38,7 +38,7 @@ function init() {
 	scene.add(grid);
 
 	// particle setup
-	fourBody();
+	threeBody();
 	initialize();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
@@ -47,7 +47,7 @@ function init() {
 		particle.position.x = scale * a.Qx;
 		particle.position.y = scale * a.Qy;
 		particle.position.z = scale * a.Qz;
-		particle.scale.x = particle.scale.y = particle.scale.z = 8.0 * Math.pow(a.mass, 1.0 / 3.0);
+		particle.scale.x = particle.scale.y = particle.scale.z = 8.0 * Math.pow(a.mass, ONETHIRD);
 		group.add(particle);
 	}
 
@@ -113,6 +113,7 @@ function render() {
 	camera.lookAt( scene.position );
 	// simulate . . .
 	stormerVerlet6(updateQ, updateP);
+	cog();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
 		group.children[i].position.x = scale * (a.Qx - cogX);
