@@ -17,9 +17,6 @@ function threeBody () {
 
 function fourBody () {
 	GLOBALS.g = 3.50;
-//	GLOBALS.ts = 0.01;
-//	GLOBALS.outputInterval = Math.round(1.0 / GLOBALS.ts);
-//	GLOBALS.errorLimit = -60.0;
 	GLOBALS.particles[0] = { colour: GLOBALS.RED, Qx: 1.0, Qy: 1.0, Qz: 1.0, Px: -1.0, Py: 1.0, Pz: -1.0, mass: 1.0, };
 	GLOBALS.particles[1] = { colour: GLOBALS.YELLOW, Qx: -1.0, Qy: -1.0, Qz: 1.0, Px: 1.0, Py: -1.0, Pz: -1.0, mass: 1.0, };
 	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: 1.0, Qy: -1.0, Qz: -1.0, Px: 1.0, Py: 1.0, Pz: 1.0, mass: 1.0, };
