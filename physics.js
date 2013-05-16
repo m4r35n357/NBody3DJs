@@ -116,21 +116,32 @@ function euler (first, second) {
 	cog();
 }
 
+function stormerVerletBase (first, second, step) {
+	first(0.5 * step)
+	second(step)
+	first(0.5 * step)
+}
+
 function stormerVerlet2 (first, second) {
-	first(0.5);
-	second(1.0);
-	first(0.5);
+	stormerVerletBase(first, second, 1.0)
 	cog();
 }
 
 function stormerVerlet4 (first, second) {
-	first(0.6756035959798289)
-	second(1.3512071919596578)
-	first(-0.17560359597982883)
-	second(-1.7024143839193153)
-	first(-0.17560359597982883)
-	second(1.3512071919596578)
-	first(0.6756035959798289)
+	stormerVerletBase(first, second, 1.351207191959657)
+	stormerVerletBase(first, second, -1.702414383919315)
+	stormerVerletBase(first, second, 1.351207191959657)
+	cog();
+}
+
+function stormerVerlet6 (first, second) {
+	stormerVerletBase(first, second, 0.784513610477560e0)
+	stormerVerletBase(first, second, 0.235573213359357e0)
+	stormerVerletBase(first, second, -1.17767998417887e0)
+	stormerVerletBase(first, second, 1.31518632068391e0)
+	stormerVerletBase(first, second, -1.17767998417887e0)
+	stormerVerletBase(first, second, 0.235573213359357e0)
+	stormerVerletBase(first, second, 0.784513610477560e0)
 	cog();
 }
 

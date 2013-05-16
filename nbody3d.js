@@ -38,7 +38,7 @@ function init() {
 	scene.add(grid);
 
 	// particle setup
-	threeBody();
+	fourBody();
 	initialize();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
@@ -112,7 +112,7 @@ function render() {
 	camera.position.y += ( - mouseY - 0.5 * camera.position.y ) * 1.0;
 	camera.lookAt( scene.position );
 	// simulate . . .
-	stormerVerlet2(updateQ, updateP);
+	stormerVerlet6(updateQ, updateP);
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
 		group.children[i].position.x = scale * (a.Qx - cogX);
@@ -129,7 +129,7 @@ function render() {
 		} else if (hNow > GLOBALS.Hmax) {
 			GLOBALS.Hmax = hNow;
 		}
-		if (GLOBALS.n % 1000 === 0) {
+		if (GLOBALS.n % GLOBALS.outputInterval === 0) {
 			console.log("t: " + (GLOBALS.n * GLOBALS.ts).toFixed(0) +
 					", H:" + hNow.toExponential(6) +
 					", H0:" + GLOBALS.H0.toExponential(6) +
