@@ -27,7 +27,7 @@ function initialize () {
 	GLOBALS.Hmin = GLOBALS.H0;
 	GLOBALS.Hmax = GLOBALS.H0;
 	GLOBALS.error = 0.0;
-	GLOBALS.ts = 0.01;
+	GLOBALS.ts = 0.02;
 	GLOBALS.outputInterval = Math.round(1.0 / GLOBALS.ts);
 }
 
@@ -117,47 +117,47 @@ function euler (first, second) {
 	second(1.0);
 }
 
-function stormerVerletBase (first, second, step) {
+function symplecticBase (first, second, step) {
 	first(0.5 * step)
 	second(step)
 	first(0.5 * step)
 }
 
 function stormerVerlet2 (first, second) {
-	stormerVerletBase(first, second, 1.0)
+	symplecticBase(first, second, 1.0)
 }
 
 function stormerVerlet4 (first, second) {
-	stormerVerletBase(first, second, 1.351207191959657)
-	stormerVerletBase(first, second, -1.702414383919315)
-	stormerVerletBase(first, second, 1.351207191959657)
+	symplecticBase(first, second, 1.351207191959657)
+	symplecticBase(first, second, -1.702414383919315)
+	symplecticBase(first, second, 1.351207191959657)
 }
 
 function stormerVerlet6 (first, second) {
-	stormerVerletBase(first, second, 0.784513610477560e0)
-	stormerVerletBase(first, second, 0.235573213359357e0)
-	stormerVerletBase(first, second, -1.17767998417887e0)
-	stormerVerletBase(first, second, 1.31518632068391e0)
-	stormerVerletBase(first, second, -1.17767998417887e0)
-	stormerVerletBase(first, second, 0.235573213359357e0)
-	stormerVerletBase(first, second, 0.784513610477560e0)
+	symplecticBase(first, second, 0.784513610477560e0)
+	symplecticBase(first, second, 0.235573213359357e0)
+	symplecticBase(first, second, -1.17767998417887e0)
+	symplecticBase(first, second, 1.31518632068391e0)
+	symplecticBase(first, second, -1.17767998417887e0)
+	symplecticBase(first, second, 0.235573213359357e0)
+	symplecticBase(first, second, 0.784513610477560e0)
 }
 
 function stormerVerlet8 (first, second) {
-	stormerVerletBase(first, second, 0.104242620869991e1)
-	stormerVerletBase(first, second, 0.182020630970714e1)
-	stormerVerletBase(first, second, 0.157739928123617e0)
-	stormerVerletBase(first, second, 0.244002732616735e1)
-	stormerVerletBase(first, second, -0.716989419708120e-2)
-	stormerVerletBase(first, second, -0.244699182370524e1)
-	stormerVerletBase(first, second, -0.161582374150097e1)
-	stormerVerletBase(first, second, -0.17808286265894516e1)
-	stormerVerletBase(first, second, -0.161582374150097e1)
-	stormerVerletBase(first, second, -0.244699182370524e1)
-	stormerVerletBase(first, second, -0.716989419708120e-2)
-	stormerVerletBase(first, second, 0.244002732616735e1)
-	stormerVerletBase(first, second, 0.157739928123617e0)
-	stormerVerletBase(first, second, 0.182020630970714e1)
-	stormerVerletBase(first, second, 0.104242620869991e1)
+	symplecticBase(first, second, 0.104242620869991e1)
+	symplecticBase(first, second, 0.182020630970714e1)
+	symplecticBase(first, second, 0.157739928123617e0)
+	symplecticBase(first, second, 0.244002732616735e1)
+	symplecticBase(first, second, -0.716989419708120e-2)
+	symplecticBase(first, second, -0.244699182370524e1)
+	symplecticBase(first, second, -0.161582374150097e1)
+	symplecticBase(first, second, -0.17808286265894516e1)
+	symplecticBase(first, second, -0.161582374150097e1)
+	symplecticBase(first, second, -0.244699182370524e1)
+	symplecticBase(first, second, -0.716989419708120e-2)
+	symplecticBase(first, second, 0.244002732616735e1)
+	symplecticBase(first, second, 0.157739928123617e0)
+	symplecticBase(first, second, 0.182020630970714e1)
+	symplecticBase(first, second, 0.104242620869991e1)
 }
 
