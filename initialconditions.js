@@ -57,27 +57,27 @@ function fourBodyA () {
 	GLOBALS.particles[3] = { colour: GLOBALS.GREEN, Qx: 0.0, Qy: 0.69548, Qz: 0.69548, Px: -0.87546, Py: 0.31950, Pz: -0.31950, mass: 1.0, };
 }
 
-function planets () {
+function outerPlanets () {
 	var mass;
 	GLOBALS.g = 2.95912208286e-4;
-	GLOBALS.ts = 10.0;
-	GLOBALS.ballScale = 80.0;
+	GLOBALS.ts = 10.0; // in days (distances are in AUs)
+	GLOBALS.ballScale = 320.0;
 	GLOBALS.gridN = 4;
-	GLOBALS.gridSize = 2000;
+	GLOBALS.gridSize = 4000;
 	GLOBALS.particles[0] = { colour: GLOBALS.RED, Qx: 0.0, Qy: 0.0, Qz: 0.0, Px: 0.0, Py: 0.0, Pz: 0.0, mass: 1.0, };
-	mass = 0.000954786104043
+	mass = 0.000954786104043  // in solar masses
 	GLOBALS.particles[1] = { colour: GLOBALS.GREEN, Qx: -3.5025653, Qy: -3.8169847, Qz: -1.5507963, Px: 0.00565429 * mass, Py: -0.00412490 * mass, Pz: -0.00190589 * mass, mass: mass };
-	mass = 0.000285583733151
+	mass = 0.000285583733151  // in solar masses
 	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: 9.0755314, Qy: -3.0458353, Qz: -1.6483708, Px: 0.00168318 * mass, Py: 0.00483525 * mass, Pz: 0.00192462 * mass, mass: mass };
-	mass = 0.0000437273164546
+	mass = 0.0000437273164546  // in solar masses
 	GLOBALS.particles[3] = { colour: GLOBALS.YELLOW, Qx: 8.3101420, Qy: -16.2901086, Qz: -7.2521278, Px: 0.00354178 * mass, Py: 0.00137102 * mass, Pz: 0.00055029 * mass, mass: mass };
-	mass = 0.0000517759138449
+	mass = 0.0000517759138449  // in solar masses
 	GLOBALS.particles[4] = { colour: GLOBALS.PURPLE, Qx: 11.4707666, Qy: -25.7294829, Qz: -10.8169456, Px: 0.00288930 * mass, Py: 0.00114527 * mass, Pz: 0.00039677 * mass, mass: mass };
 }
 
 function eightBody () {
 	GLOBALS.g = 0.05;
-	GLOBALS.ts = 0.01;
+	GLOBALS.ts = 0.02;
 	GLOBALS.ballScale = 8.0;
 	GLOBALS.gridN = 2;
 	GLOBALS.gridSize = 1000;

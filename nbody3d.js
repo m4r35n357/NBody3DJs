@@ -12,13 +12,13 @@ animate();
 function init() {
 	var ONETHIRD = 1.0 / 3.0;
 
-	eightBody();
+	outerPlanets();
 	initialize();
 
 	container = document.createElement( 'div' );
 	document.body.appendChild( container );
 
-	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 12000 );
 	camera.position.y = - GLOBALS.gridSize;
 	camera.position.z = GLOBALS.gridSize;
 
@@ -133,7 +133,7 @@ function render() {
 		} else if (hNow > GLOBALS.Hmax) {
 			GLOBALS.Hmax = hNow;
 		}
-		if (GLOBALS.n % 1000 === 0) {
+		if (GLOBALS.n % 100 === 0) {
 			console.log("t: " + (GLOBALS.n * GLOBALS.ts).toFixed(0) +
 					", H:" + hNow.toExponential(6) +
 					", H0:" + GLOBALS.H0.toExponential(6) +
