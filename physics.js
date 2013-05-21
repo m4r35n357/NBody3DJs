@@ -27,7 +27,7 @@ function initialize () {
 	GLOBALS.Hmin = GLOBALS.H0;
 	GLOBALS.Hmax = GLOBALS.H0;
 	GLOBALS.error = 0.0;
-	GLOBALS.ts = 0.02;
+	GLOBALS.ts = 0.01;
 	GLOBALS.outputInterval = Math.round(1.0 / GLOBALS.ts);
 }
 
@@ -92,11 +92,11 @@ function updateP (c) {
 		aQy = a.Qy;
 		aQz = a.Qz;
 		for (j = 0; j < N; j += 1) {
-			b = GLOBALS.particles[j];
-			bQx = b.Qx;
-			bQy = b.Qy;
-			bQz = b.Qz;
 			if (i > j) {
+				b = GLOBALS.particles[j];
+				bQx = b.Qx;
+				bQy = b.Qy;
+				bQz = b.Qz;
 				tmp = - c * g * am * b.mass / Math.pow(distance(aQx, aQy, aQz, bQx, bQy, bQz), 3) * ts;
 				dPx = (bQx - aQx) * tmp;
 				dPy = (bQy - aQy) * tmp;
