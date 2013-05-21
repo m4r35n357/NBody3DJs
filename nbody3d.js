@@ -115,7 +115,7 @@ function render() {
 //	camera.position.y += ( - mouseY - 0.5 * camera.position.y ) * 1.0;
 	camera.lookAt( scene.position );
 	// simulate . . .
-	stormerVerlet6(updateQ, updateP);
+	stormerVerlet2(updateQ, updateP);
 	cog();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
@@ -125,21 +125,21 @@ function render() {
 	}
 	// monitor value of the Hamiltonian
 	if (GLOBALS.debug) {
-		hNow = hamiltonian();
-		tmp = Math.abs(hNow - GLOBALS.H0);
-		dH = tmp > 0.0 ? tmp : 1.0e-18;
-		if (hNow < GLOBALS.Hmin) {
-			GLOBALS.Hmin = hNow;
-		} else if (hNow > GLOBALS.Hmax) {
-			GLOBALS.Hmax = hNow;
-		}
 		if (GLOBALS.n % 100 === 0) {
+			hNow = hamiltonian();
+			tmp = Math.abs(hNow - GLOBALS.H0);
+			dH = tmp > 0.0 ? tmp : 1.0e-18;
+			if (hNow < GLOBALS.Hmin) {
+				GLOBALS.Hmin = hNow;
+			} else if (hNow > GLOBALS.Hmax) {
+				GLOBALS.Hmax = hNow;
+			}
 			console.log("t: " + (GLOBALS.n * GLOBALS.ts).toFixed(0) +
-					", H:" + hNow.toExponential(6) +
-					", H0:" + GLOBALS.H0.toExponential(6) +
-					", H-:" + GLOBALS.Hmin.toExponential(6) +
-					", H+:" + GLOBALS.Hmax.toExponential(6) +
-					", ER:" + (10.0 * log10(Math.abs(dH / GLOBALS.H0))).toFixed(1));
+				", H:" + hNow.toExponential(6) +
+				", H0:" + GLOBALS.H0.toExponential(6) +
+				", H-:" + GLOBALS.Hmin.toExponential(6) +
+				", H+:" + GLOBALS.Hmax.toExponential(6) +
+				", ER:" + (10.0 * log10(Math.abs(dH / GLOBALS.H0))).toFixed(1));
 		}
 	}
 	GLOBALS.n += 1;

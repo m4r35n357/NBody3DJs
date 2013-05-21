@@ -60,7 +60,7 @@ function fourBodyA () {
 function outerPlanets () {
 	var mass;
 	GLOBALS.g = 2.95912208286e-4;
-	GLOBALS.ts = 10.0; // in days (distances are in AUs)
+	GLOBALS.ts = 1.0; // in days (distances are in AUs)
 	GLOBALS.ballScale = 320.0;
 	GLOBALS.gridN = 4;
 	GLOBALS.gridSize = 4000;
