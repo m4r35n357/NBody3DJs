@@ -11,11 +11,16 @@ animate();
 
 function init() {
 	var ONETHIRD = 1.0 / 3.0;
+
+	eightBody();
+	initialize();
+
 	container = document.createElement( 'div' );
 	document.body.appendChild( container );
 
-	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
-	camera.position.z = 1000;
+	camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+	camera.position.y = - GLOBALS.gridSize;
+	camera.position.z = GLOBALS.gridSize;
 
 	scene = new THREE.Scene();
 
@@ -30,16 +35,7 @@ function init() {
 	group = new THREE.Object3D();
 	scene.add( group );
 
-	// Grid
-	var N = 2;
-	var W = H = 1000;
-	var grid = new THREE.Mesh(new THREE.PlaneGeometry(N * W, N * H, N, N), new THREE.MeshBasicMaterial({ color: GLOBALS.DARKGREY, wireframe: true }));
-	grid.rotation.z = PI2;
-	scene.add(grid);
-
-	// particle setup
-	threeBody();
-	initialize();
+	// Particles
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
 		a.radius = Math.pow(a.mass / GLOBALS.density, ONETHIRD);
@@ -47,9 +43,16 @@ function init() {
 		particle.position.x = scale * a.Qx;
 		particle.position.y = scale * a.Qy;
 		particle.position.z = scale * a.Qz;
-		particle.scale.x = particle.scale.y = particle.scale.z = 8.0 * Math.pow(a.mass, ONETHIRD);
+		particle.scale.x = particle.scale.y = particle.scale.z = GLOBALS.ballScale * Math.pow(a.mass, ONETHIRD);
 		group.add(particle);
 	}
+
+	// Grid
+	var N = GLOBALS.gridN;
+	var W = H = GLOBALS.gridSize;
+	var grid = new THREE.Mesh(new THREE.PlaneGeometry(N * W, N * H, N, N), new THREE.MeshBasicMaterial({ color: GLOBALS.DARKGREY, wireframe: true }));
+	grid.rotation.z = PI2;
+	scene.add(grid);
 
 	renderer = new THREE.CanvasRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
@@ -108,8 +111,8 @@ function log10 (x) {
 
 function render() {
 	var a, hNow, dH, tmp, dbValue;
-	camera.position.x += ( mouseX - 0.5 * camera.position.x ) * 1.0;
-	camera.position.y += ( - mouseY - 0.5 * camera.position.y ) * 1.0;
+//	camera.position.x += ( mouseX - 0.5 * camera.position.x ) * 1.0;
+//	camera.position.y += ( - mouseY - 0.5 * camera.position.y ) * 1.0;
 	camera.lookAt( scene.position );
 	// simulate . . .
 	stormerVerlet6(updateQ, updateP);
@@ -130,7 +133,7 @@ function render() {
 		} else if (hNow > GLOBALS.Hmax) {
 			GLOBALS.Hmax = hNow;
 		}
-		if (GLOBALS.n % GLOBALS.outputInterval === 0) {
+		if (GLOBALS.n % 1000 === 0) {
 			console.log("t: " + (GLOBALS.n * GLOBALS.ts).toFixed(0) +
 					", H:" + hNow.toExponential(6) +
 					", H0:" + GLOBALS.H0.toExponential(6) +

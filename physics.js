@@ -27,7 +27,6 @@ function initialize () {
 	GLOBALS.Hmin = GLOBALS.H0;
 	GLOBALS.Hmax = GLOBALS.H0;
 	GLOBALS.error = 0.0;
-	GLOBALS.ts = 0.01;
 	GLOBALS.outputInterval = Math.round(1.0 / GLOBALS.ts);
 }
 
