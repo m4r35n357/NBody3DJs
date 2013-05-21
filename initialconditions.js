@@ -2,6 +2,12 @@
 
 //"use strict";
 
+function infall () {
+	GLOBALS.g = 1.0;
+	GLOBALS.particles[0] = { colour: GLOBALS.GREEN, Qx: 3.0, Qy: 0.0, Qz: 0.0, Px: 0.0, Py:0.0, Pz: 0.0, mass: 1.0, };
+	GLOBALS.particles[1] = { colour: GLOBALS.RED, Qx: -3.0, Qy: 0.0, Qz: 0.0, Px: 0.0, Py: 0.0, Pz: 0.0, mass: 1.0, };
+}
+
 function twoBody () {
 	GLOBALS.g = 0.05;
 	GLOBALS.particles[0] = { colour: GLOBALS.GREEN, Qx: 1.0, Qy: 2.0, Qz: 0.0, Px: 0.3, Py: 0.3, Pz: 0.0, mass: 5.0, };
@@ -18,9 +24,9 @@ function threeBody () {
 function fourBody () {
 	GLOBALS.g = 3.50;
 	GLOBALS.particles[0] = { colour: GLOBALS.RED, Qx: 1.0, Qy: 1.0, Qz: 1.0, Px: -1.0, Py: 1.0, Pz: -1.0, mass: 1.0, };
-	GLOBALS.particles[1] = { colour: GLOBALS.YELLOW, Qx: -1.0, Qy: -1.0, Qz: 1.0, Px: 1.0, Py: -1.0, Pz: -1.0, mass: 1.0, };
+	GLOBALS.particles[1] = { colour: GLOBALS.GREEN, Qx: -1.0, Qy: -1.0, Qz: 1.0, Px: 1.0, Py: -1.0, Pz: -1.0, mass: 1.0, };
 	GLOBALS.particles[2] = { colour: GLOBALS.BLUE, Qx: 1.0, Qy: -1.0, Qz: -1.0, Px: 1.0, Py: 1.0, Pz: 1.0, mass: 1.0, };
-	GLOBALS.particles[3] = { colour: GLOBALS.GREEN, Qx: -1.0, Qy: 1.0, Qz: -1.0, Px: -1.0, Py: -1.0, Pz: 1.0, mass: 1.0, };
+	GLOBALS.particles[3] = { colour: GLOBALS.YELLOW, Qx: -1.0, Qy: 1.0, Qz: -1.0, Px: -1.0, Py: -1.0, Pz: 1.0, mass: 1.0, };
 }
 
 function fourBodyA () {
