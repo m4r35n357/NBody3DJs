@@ -134,13 +134,13 @@ function stormerVerlet4 (first, second) {
 }
 
 function stormerVerlet6 (first, second) {
-	symplecticBase(first, second, 0.784513610477560e0);
-	symplecticBase(first, second, 0.235573213359357e0);
-	symplecticBase(first, second, -1.17767998417887e0);
-	symplecticBase(first, second, 1.31518632068391e0);
-	symplecticBase(first, second, -1.17767998417887e0);
-	symplecticBase(first, second, 0.235573213359357e0);
-	symplecticBase(first, second, 0.784513610477560e0);
+	stormerVerletBase(first, second, 0.78451361047755726381949763)
+	stormerVerletBase(first, second, 0.23557321335935813368479318)
+	stormerVerletBase(first, second, -1.17767998417887100694641568)
+	stormerVerletBase(first, second, 1.31518632068391121888424973)
+	stormerVerletBase(first, second, -1.17767998417887100694641568)
+	stormerVerletBase(first, second, 0.23557321335935813368479318)
+	stormerVerletBase(first, second, 0.78451361047755726381949763)
 }
 
 function stormerVerlet8 (first, second) {
@@ -159,22 +159,5 @@ function stormerVerlet8 (first, second) {
 	stormerVerletBase(first, second, 0.19075471029623837995387626)
 	stormerVerletBase(first, second, -0.40910082580003159399730010)
 	stormerVerletBase(first, second, 0.74167036435061295344822780)
-/*
-	symplecticBase(first, second, 0.104242620869991e1);
-	symplecticBase(first, second, 0.182020630970714e1);
-	symplecticBase(first, second, 0.157739928123617e0);
-	symplecticBase(first, second, 0.244002732616735e1);
-	symplecticBase(first, second, -0.716989419708120e-2);
-	symplecticBase(first, second, -0.244699182370524e1);
-	symplecticBase(first, second, -0.161582374150097e1);
-	symplecticBase(first, second, -0.17808286265894516e1);
-	symplecticBase(first, second, -0.161582374150097e1);
-	symplecticBase(first, second, -0.244699182370524e1);
-	symplecticBase(first, second, -0.716989419708120e-2);
-	symplecticBase(first, second, 0.244002732616735e1);
-	symplecticBase(first, second, 0.157739928123617e0);
-	symplecticBase(first, second, 0.182020630970714e1);
-	symplecticBase(first, second, 0.104242620869991e1);
-*/
 }
 
