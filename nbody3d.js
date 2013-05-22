@@ -12,7 +12,7 @@ animate();
 function init() {
 	var ONETHIRD = 1.0 / 3.0;
 
-	outerPlanets();
+	eightBody();
 	initialize();
 
 	container = document.createElement( 'div' );
@@ -115,7 +115,7 @@ function render() {
 //	camera.position.y += ( - mouseY - 0.5 * camera.position.y ) * 1.0;
 	camera.lookAt( scene.position );
 	// simulate . . .
-	stormerVerlet8(updateQ, updateP);
+	stormerVerlet4(updateQ, updateP);
 	cog();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
