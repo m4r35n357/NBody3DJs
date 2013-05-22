@@ -117,47 +117,49 @@ function euler (first, second) {
 	second(1.0);
 }
 
-function symplecticBase (first, second, step) {
+function stormerVerletBase (first, second, step) {
 	first(0.5 * step);
 	second(step);
 	first(0.5 * step);
 }
 
 function stormerVerlet2 (first, second) {
-	symplecticBase(first, second, 1.0);
+	stormerVerletBase(first, second, 1.0);
 }
 
 function stormerVerlet4 (first, second) {
-	symplecticBase(first, second, 1.351207191959657);
-	symplecticBase(first, second, -1.702414383919315);
-	symplecticBase(first, second, 1.351207191959657);
+	var qr2 = Math.pow(2.0, 1.0 / 3.0);
+	var gamma1 = 1.0 / (2.0 - qr2);
+	stormerVerletBase(first, second, gamma1);
+	stormerVerletBase(first, second, -qr2 * gamma1);
+	stormerVerletBase(first, second, gamma1);
 }
 
 function stormerVerlet6 (first, second) {
-	stormerVerletBase(first, second, 0.78451361047755726381949763)
-	stormerVerletBase(first, second, 0.23557321335935813368479318)
-	stormerVerletBase(first, second, -1.17767998417887100694641568)
-	stormerVerletBase(first, second, 1.31518632068391121888424973)
-	stormerVerletBase(first, second, -1.17767998417887100694641568)
-	stormerVerletBase(first, second, 0.23557321335935813368479318)
-	stormerVerletBase(first, second, 0.78451361047755726381949763)
+	stormerVerletBase(first, second, 0.78451361047755726381949763);
+	stormerVerletBase(first, second, 0.23557321335935813368479318);
+	stormerVerletBase(first, second, -1.17767998417887100694641568);
+	stormerVerletBase(first, second, 1.31518632068391121888424973);
+	stormerVerletBase(first, second, -1.17767998417887100694641568);
+	stormerVerletBase(first, second, 0.23557321335935813368479318);
+	stormerVerletBase(first, second, 0.78451361047755726381949763);
 }
 
 function stormerVerlet8 (first, second) {
-	stormerVerletBase(first, second, 0.74167036435061295344822780)
-	stormerVerletBase(first, second, -0.40910082580003159399730010)
-	stormerVerletBase(first, second, 0.19075471029623837995387626)
-	stormerVerletBase(first, second, -0.57386247111608226665638773)
-	stormerVerletBase(first, second, 0.29906418130365592384446354)
-	stormerVerletBase(first, second, 0.33462491824529818378495798)
-	stormerVerletBase(first, second, 0.31529309239676659663205666)
-	stormerVerletBase(first, second, -0.79688793935291635401978884)
-	stormerVerletBase(first, second, 0.31529309239676659663205666)
-	stormerVerletBase(first, second, 0.33462491824529818378495798)
-	stormerVerletBase(first, second, 0.29906418130365592384446354)
-	stormerVerletBase(first, second, -0.57386247111608226665638773)
-	stormerVerletBase(first, second, 0.19075471029623837995387626)
-	stormerVerletBase(first, second, -0.40910082580003159399730010)
-	stormerVerletBase(first, second, 0.74167036435061295344822780)
+	stormerVerletBase(first, second, 0.74167036435061295344822780);
+	stormerVerletBase(first, second, -0.40910082580003159399730010);
+	stormerVerletBase(first, second, 0.19075471029623837995387626);
+	stormerVerletBase(first, second, -0.57386247111608226665638773);
+	stormerVerletBase(first, second, 0.29906418130365592384446354);
+	stormerVerletBase(first, second, 0.33462491824529818378495798);
+	stormerVerletBase(first, second, 0.31529309239676659663205666);
+	stormerVerletBase(first, second, -0.79688793935291635401978884);
+	stormerVerletBase(first, second, 0.31529309239676659663205666);
+	stormerVerletBase(first, second, 0.33462491824529818378495798);
+	stormerVerletBase(first, second, 0.29906418130365592384446354);
+	stormerVerletBase(first, second, -0.57386247111608226665638773);
+	stormerVerletBase(first, second, 0.19075471029623837995387626);
+	stormerVerletBase(first, second, -0.40910082580003159399730010);
+	stormerVerletBase(first, second, 0.74167036435061295344822780);
 }
 
