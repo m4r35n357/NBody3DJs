@@ -19,6 +19,7 @@ GLOBALS = {
 	n: 0,
 	error: 0.0,
 	particles: [],
+	CUBEROOT2: Math.pow(2.0, 1.0 / 3.0),
 };
 
 function initialize () {
@@ -112,54 +113,53 @@ function updateP (c) {
 	}
 }
 
-function euler (first, second) {
-	first(1.0);
-	second(1.0);
+function euler () {
+	updateQ(1.0);
+	updateP(1.0);
 }
 
-function stormerVerletBase (first, second, step) {
-	first(0.5 * step);
-	second(step);
-	first(0.5 * step);
+function sympBase (c) {
+	updateQ(0.5 * c);
+	updateP(c);
+	updateQ(0.5 * c);
 }
 
-function stormerVerlet2 (first, second) {
-	stormerVerletBase(first, second, 1.0);
+function stormerVerlet2 () {
+	sympBase(1.0);
 }
 
-function stormerVerlet4 (first, second) {
-	var qr2 = Math.pow(2.0, 1.0 / 3.0);
-	var gamma1 = 1.0 / (2.0 - qr2);
-	stormerVerletBase(first, second, gamma1);
-	stormerVerletBase(first, second, -qr2 * gamma1);
-	stormerVerletBase(first, second, gamma1);
+function stormerVerlet4 () {
+	var gamma = 1.0 / (2.0 - GLOBALS.CUBEROOT2);
+	sympBase(gamma);
+	sympBase(- GLOBALS.CUBEROOT2 * gamma);
+	sympBase(gamma);
 }
 
-function stormerVerlet6 (first, second) {
-	stormerVerletBase(first, second, 0.78451361047755726381949763);
-	stormerVerletBase(first, second, 0.23557321335935813368479318);
-	stormerVerletBase(first, second, -1.17767998417887100694641568);
-	stormerVerletBase(first, second, 1.31518632068391121888424973);
-	stormerVerletBase(first, second, -1.17767998417887100694641568);
-	stormerVerletBase(first, second, 0.23557321335935813368479318);
-	stormerVerletBase(first, second, 0.78451361047755726381949763);
+function stormerVerlet6 () {
+	sympBase(0.78451361047755726381949763);
+	sympBase(0.23557321335935813368479318);
+	sympBase(-1.17767998417887100694641568);
+	sympBase(1.31518632068391121888424973);
+	sympBase(-1.17767998417887100694641568);
+	sympBase(0.23557321335935813368479318);
+	sympBase(0.78451361047755726381949763);
 }
 
-function stormerVerlet8 (first, second) {
-	stormerVerletBase(first, second, 0.74167036435061295344822780);
-	stormerVerletBase(first, second, -0.40910082580003159399730010);
-	stormerVerletBase(first, second, 0.19075471029623837995387626);
-	stormerVerletBase(first, second, -0.57386247111608226665638773);
-	stormerVerletBase(first, second, 0.29906418130365592384446354);
-	stormerVerletBase(first, second, 0.33462491824529818378495798);
-	stormerVerletBase(first, second, 0.31529309239676659663205666);
-	stormerVerletBase(first, second, -0.79688793935291635401978884);
-	stormerVerletBase(first, second, 0.31529309239676659663205666);
-	stormerVerletBase(first, second, 0.33462491824529818378495798);
-	stormerVerletBase(first, second, 0.29906418130365592384446354);
-	stormerVerletBase(first, second, -0.57386247111608226665638773);
-	stormerVerletBase(first, second, 0.19075471029623837995387626);
-	stormerVerletBase(first, second, -0.40910082580003159399730010);
-	stormerVerletBase(first, second, 0.74167036435061295344822780);
+function stormerVerlet8 () {
+	sympBase(0.74167036435061295344822780);
+	sympBase(-0.40910082580003159399730010);
+	sympBase(0.19075471029623837995387626);
+	sympBase(-0.57386247111608226665638773);
+	sympBase(0.29906418130365592384446354);
+	sympBase(0.33462491824529818378495798);
+	sympBase(0.31529309239676659663205666);
+	sympBase(-0.79688793935291635401978884);
+	sympBase(0.31529309239676659663205666);
+	sympBase(0.33462491824529818378495798);
+	sympBase(0.29906418130365592384446354);
+	sympBase(-0.57386247111608226665638773);
+	sympBase(0.19075471029623837995387626);
+	sympBase(-0.40910082580003159399730010);
+	sympBase(0.74167036435061295344822780);
 }
 
