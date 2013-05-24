@@ -129,10 +129,10 @@ function stormerVerlet2 () {
 }
 
 function stormerVerlet4 () {
-	var gamma = 1.0 / (2.0 - GLOBALS.CUBEROOT2);
-	sympBase(gamma);
-	sympBase(- GLOBALS.CUBEROOT2 * gamma);
-	sympBase(gamma);
+	var y = 1.0 / (2.0 - GLOBALS.CUBEROOT2);
+	sympBase(y);
+	sympBase(- GLOBALS.CUBEROOT2 * y);
+	sympBase(y);
 }
 
 function stormerVerlet6 () {
