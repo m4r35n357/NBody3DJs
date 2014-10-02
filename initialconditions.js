@@ -76,8 +76,9 @@ function outerPlanets () {
 }
 
 function eightBody () {
-	GLOBALS.g = 0.05;
+	GLOBALS.order = 10;
 	GLOBALS.ts = 0.01;
+	GLOBALS.g = 0.05;
 	GLOBALS.ballScale = 8.0;
 	GLOBALS.gridN = 2;
 	GLOBALS.gridSize = 1000;

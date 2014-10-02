@@ -28,6 +28,33 @@ function initialize () {
 	GLOBALS.Hmin = GLOBALS.H0;
 	GLOBALS.Hmax = GLOBALS.H0;
 	GLOBALS.error = 0.0;
+	switch(GLOBALS.order) {
+	    case 2:
+                GLOBALS.coefficients = [1.0];
+	        break;
+	    case 10:
+                GLOBALS.coefficients = [0.09040619368607278492161150,
+					0.53591815953030120213784983,
+					0.35123257547493978187517736,
+					-0.31116802097815835426086544,
+					-0.52556314194263510431065549,
+					0.14447909410225247647345695,
+					0.02983588609748235818064083,
+					0.17786179923739805133592238,
+					0.09826906939341637652532377,
+					0.46179986210411860873242126,
+					-0.33377845599881851314531820,
+					0.07095684836524793621031152,
+					0.23666960070126868771909819,
+					-0.49725977950660985445028388,
+					-0.30399616617237257346546356,
+					0.05246957188100069574521612,
+					0.44373380805019087955111365];
+	        break;
+	    default:
+                GLOBALS.coefficients = [1.0];
+	        break;
+	} 
 }
 
 function cog () {
@@ -122,6 +149,16 @@ function sympBase (c) {
 	updateQ(0.5 * c);
 	updateP(c);
 	updateQ(0.5 * c);
+}
+
+function solve () {  // Generalized Symplectic Integrator
+        var i;
+        for (i = 0; i < GLOBALS.coefficients.length; i += 1) {  // Composition happens in these loops
+                sympBase(GLOBALS.coefficients[i]);
+        }
+        for (i = GLOBALS.coefficients.length - 2; i >= 0; i -= 1) {
+                sympBase(GLOBALS.coefficients[i]);
+        }
 }
 
 function stormerVerlet2 () {

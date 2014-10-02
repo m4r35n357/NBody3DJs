@@ -115,7 +115,8 @@ function render() {
 //	camera.position.y += ( - mouseY - 0.5 * camera.position.y ) * 1.0;
 	camera.lookAt( scene.position );
 	// simulate . . .
-	stormerVerlet4();
+	solve()
+//	stormerVerlet2();
 	cog();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
