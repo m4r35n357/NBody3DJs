@@ -15,13 +15,13 @@ function infall () {
 
 function twoBody () {
 	GLOBALS.order = 4;
-	GLOBALS.g = 0.05;
-	GLOBALS.ts = 0.01;
+	GLOBALS.g = 2.0;
+	GLOBALS.ts = 0.05;
 	GLOBALS.ballScale = 8.0;
 	GLOBALS.gridN = 2;
 	GLOBALS.gridSize = 1000;
-	GLOBALS.particles[0] = { colour: GLOBALS.GREEN, Qx: 1.0, Qy: 2.0, Qz: 0.0, Px: 0.3, Py: 0.3, Pz: 0.0, mass: 5.0, };
-	GLOBALS.particles[1] = { colour: GLOBALS.RED, Qx: 2.0, Qy: 1.0, Qz: 0.0, Px: -0.3, Py: -0.3, Pz: 0.0, mass: 1.0, };
+	GLOBALS.particles[0] = { colour: GLOBALS.GREEN, Qx: 0.0, Qy: 0.5, Qz: 0.0, Px: 1.0, Py: 0.0, Pz: 0.0, mass: 1.0, };
+	GLOBALS.particles[1] = { colour: GLOBALS.RED, Qx: 0.0, Qy: -0.5, Qz: 0.0, Px: -1.0, Py: 0.0, Pz: 0.0, mass: 1.0, };
 }
 
 function threeBody () {
@@ -37,7 +37,7 @@ function threeBody () {
 }
 
 function fourBody () {
-	GLOBALS.order = 6;
+	GLOBALS.order = 4;
 	GLOBALS.g = 3.50;
 	GLOBALS.ts = 0.01;
 	GLOBALS.ballScale = 8.0;

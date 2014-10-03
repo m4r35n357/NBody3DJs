@@ -12,7 +12,7 @@ animate();
 function init() {
 	var ONETHIRD = 1.0 / 3.0;
 
-	eightBody();
+	fourBody();
 	initialize();
 
 	container = document.createElement( 'div' );
@@ -139,7 +139,7 @@ function render() {
 				", H0:" + GLOBALS.H0.toExponential(6) +
 				", H-:" + GLOBALS.Hmin.toExponential(6) +
 				", H+:" + GLOBALS.Hmax.toExponential(6) +
-				", ER:" + (10.0 * log10(Math.abs(dH / GLOBALS.H0))).toFixed(1));
+				", ER:" + (10.0 * log10(dH)).toFixed(1));
 		}
 	}
 	GLOBALS.n += 1;
