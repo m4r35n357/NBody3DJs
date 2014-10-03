@@ -173,10 +173,11 @@ function sympBase (c) {
 
 function solve () {  // Generalized Symplectic Integrator
         var i;
-        for (i = 0; i < GLOBALS.coefficients.length - 1; i += 1) {  // Composition happens in these loops
+	var size = GLOBALS.coefficients.length - 1;
+        for (i = 0; i < size; i += 1) {  // Composition happens in these loops
                 sympBase(GLOBALS.coefficients[i]);
         }
-        for (i = GLOBALS.coefficients.length - 1; i >= 0; i -= 1) {
+        for (i = size; i >= 0; i -= 1) {
                 sympBase(GLOBALS.coefficients[i]);
         }
 }
