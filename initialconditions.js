@@ -3,6 +3,7 @@
 //"use strict";
 
 function infall () {
+	GLOBALS.order = 4;
 	GLOBALS.g = 1.0;
 	GLOBALS.ts = 0.01;
 	GLOBALS.ballScale = 8.0;
@@ -13,6 +14,7 @@ function infall () {
 }
 
 function twoBody () {
+	GLOBALS.order = 4;
 	GLOBALS.g = 0.05;
 	GLOBALS.ts = 0.01;
 	GLOBALS.ballScale = 8.0;
@@ -23,6 +25,7 @@ function twoBody () {
 }
 
 function threeBody () {
+	GLOBALS.order = 4;
 	GLOBALS.g = 1.0;
 	GLOBALS.ts = 0.01;
 	GLOBALS.ballScale = 8.0;
@@ -34,6 +37,7 @@ function threeBody () {
 }
 
 function fourBody () {
+	GLOBALS.order = 6;
 	GLOBALS.g = 3.50;
 	GLOBALS.ts = 0.01;
 	GLOBALS.ballScale = 8.0;
@@ -46,6 +50,7 @@ function fourBody () {
 }
 
 function fourBodyA () {
+	GLOBALS.order = 4;
 	GLOBALS.g = 1.0;
 	GLOBALS.ts = 0.01;
 	GLOBALS.ballScale = 8.0;
@@ -59,6 +64,7 @@ function fourBodyA () {
 
 function outerPlanets () {
 	var mass;
+	GLOBALS.order = 4;
 	GLOBALS.g = 2.95912208286e-4;
 	GLOBALS.ts = 1.0; // in days (distances are in AUs)
 	GLOBALS.ballScale = 320.0;
@@ -76,7 +82,7 @@ function outerPlanets () {
 }
 
 function eightBody () {
-	GLOBALS.order = 10;
+	GLOBALS.order = 2;
 	GLOBALS.ts = 0.01;
 	GLOBALS.g = 0.05;
 	GLOBALS.ballScale = 8.0;
@@ -93,6 +99,7 @@ function eightBody () {
 }
 
 function eightBodyA () {
+	GLOBALS.order = 6;
 	GLOBALS.g = 6.0;
 	GLOBALS.ts = 0.01;
 	GLOBALS.ballScale = 8.0;
