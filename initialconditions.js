@@ -37,9 +37,9 @@ function threeBody () {
 }
 
 function fourBody () {
-	GLOBALS.order = 4;
-	GLOBALS.g = 3.50;
-	GLOBALS.ts = 0.01;
+	GLOBALS.order = 10;
+	GLOBALS.g = 3.0;
+	GLOBALS.ts = 0.05;
 	GLOBALS.ballScale = 8.0;
 	GLOBALS.gridN = 2;
 	GLOBALS.gridSize = 1000;
