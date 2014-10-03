@@ -173,50 +173,11 @@ function sympBase (c) {
 
 function solve () {  // Generalized Symplectic Integrator
         var i;
-        for (i = 0; i < GLOBALS.coefficients.length; i += 1) {  // Composition happens in these loops
+        for (i = 0; i < GLOBALS.coefficients.length - 1; i += 1) {  // Composition happens in these loops
                 sympBase(GLOBALS.coefficients[i]);
         }
-        for (i = GLOBALS.coefficients.length - 2; i >= 0; i -= 1) {
+        for (i = GLOBALS.coefficients.length - 1; i >= 0; i -= 1) {
                 sympBase(GLOBALS.coefficients[i]);
         }
-}
-
-function stormerVerlet2 () {
-	sympBase(1.0);
-}
-
-function stormerVerlet4 () {
-	var y = 1.0 / (2.0 - GLOBALS.CUBEROOT2);
-	sympBase(y);
-	sympBase(- GLOBALS.CUBEROOT2 * y);
-	sympBase(y);
-}
-
-function stormerVerlet6 () {
-	sympBase(0.78451361047755726381949763);
-	sympBase(0.23557321335935813368479318);
-	sympBase(-1.17767998417887100694641568);
-	sympBase(1.31518632068391121888424973);
-	sympBase(-1.17767998417887100694641568);
-	sympBase(0.23557321335935813368479318);
-	sympBase(0.78451361047755726381949763);
-}
-
-function stormerVerlet8 () {
-	sympBase(0.74167036435061295344822780);
-	sympBase(-0.40910082580003159399730010);
-	sympBase(0.19075471029623837995387626);
-	sympBase(-0.57386247111608226665638773);
-	sympBase(0.29906418130365592384446354);
-	sympBase(0.33462491824529818378495798);
-	sympBase(0.31529309239676659663205666);
-	sympBase(-0.79688793935291635401978884);
-	sympBase(0.31529309239676659663205666);
-	sympBase(0.33462491824529818378495798);
-	sympBase(0.29906418130365592384446354);
-	sympBase(-0.57386247111608226665638773);
-	sympBase(0.19075471029623837995387626);
-	sympBase(-0.40910082580003159399730010);
-	sympBase(0.74167036435061295344822780);
 }
 

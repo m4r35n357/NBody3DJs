@@ -116,7 +116,6 @@ function render() {
 	camera.lookAt( scene.position );
 	// simulate . . .
 	solve()
-//	stormerVerlet2();
 	cog();
 	for (i = 0; i < GLOBALS.np; i += 1) {
 		a = GLOBALS.particles[i];
