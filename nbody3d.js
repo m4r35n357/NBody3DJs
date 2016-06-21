@@ -12,7 +12,7 @@ animate();
 function init() {
 	var ONETHIRD = 1.0 / 3.0;
 
-	fourBody();
+	eightBody();
 	initialize();
 
 	container = document.createElement( 'div' );
@@ -64,7 +64,7 @@ function init() {
 	container.appendChild( stats.domElement );
 
 	document.addEventListener( 'mousedown', onDocumentMouseMove, false );
-//	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
 	document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 
 	window.addEventListener( 'resize', onWindowResize, false );
@@ -111,10 +111,11 @@ function log10 (x) {
 
 function render() {
 	var a, hNow, dH, tmp, dbValue;
-//	camera.position.x += ( mouseX - 0.5 * camera.position.x ) * 1.0;
-//	camera.position.y += ( - mouseY - 0.5 * camera.position.y ) * 1.0;
+	camera.position.x += ( mouseX - 0.5 * camera.position.x ) * 1.0;
+	camera.position.y += ( - mouseY - 0.5 * camera.position.y ) * 1.0;
 	camera.lookAt( scene.position );
 	// simulate . . .
+//	euler()
 	solve()
 	cog();
 	for (i = 0; i < GLOBALS.np; i += 1) {

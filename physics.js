@@ -172,8 +172,8 @@ function sympBase (c) {
 }
 
 function solve () {  // Generalized Symplectic Integrator
-        var i;
 	var size = GLOBALS.coefficients.length - 1;
+        var i;
         for (i = 0; i < size; i += 1) {  // Composition happens in these loops
                 sympBase(GLOBALS.coefficients[i]);
         }
